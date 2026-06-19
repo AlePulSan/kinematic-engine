@@ -103,7 +103,7 @@ def draw_hud(frame, fps, backend_str):
     cv2.rectangle(overlay, (W_CAM - UI_WIDTH, 0), (W_CAM, H_CAM), (10, 10, 12), -1)
     cv2.addWeighted(overlay, 0.70, frame, 0.30, 0, frame) 
 
-    cv2.putText(frame, "KINEMATIC ENGINE", (BTN_X1, 50), cv2.FONT_HERSHEY_DUPLEX, 0.7, (255, 255, 255), 1)
+    cv2.putText(frame, "JELLYFLOW ENGINE", (BTN_X1, 50), cv2.FONT_HERSHEY_DUPLEX, 0.7, (255, 255, 255), 1)
     cv2.putText(frame, f"System: {backend_str}", (BTN_X1, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (150, 150, 150), 1)
     cv2.putText(frame, f"Frame rate: {int(fps)} FPS", (BTN_X1, 105), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (150, 150, 150), 1)
     
@@ -126,7 +126,7 @@ def draw_hud(frame, fps, backend_str):
 
 
 def main():
-    print("[System] Inicializando Kinematic Engine (Pipeline Optimizado)...")
+    print("[System] Inicializando JellyFlow Engine (Pipeline Optimizado)...")
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     # Modelos
@@ -137,8 +137,8 @@ def main():
 
     cam = ThreadedCamera(VIDEO_SOURCE, W_CAM, H_CAM).start()
     
-    cv2.namedWindow("Kinematic Engine", cv2.WINDOW_NORMAL)
-    cv2.setMouseCallback("Kinematic Engine", mouse_callback)
+    cv2.namedWindow("JellyFlow Engine", cv2.WINDOW_NORMAL)
+    cv2.setMouseCallback("JellyFlow Engine", mouse_callback)
 
     y, x = torch.meshgrid(torch.linspace(-1, 1, H_CAM, device=device), torch.linspace(-1, 1, W_CAM, device=device), indexing='ij')
     base_grid = torch.stack((x, y), dim=2).unsqueeze(0)
@@ -220,7 +220,7 @@ def main():
             p_time = time.time()
             draw_hud(out, fps, f"CUDA ({device.type})")
 
-            cv2.imshow("Kinematic Engine", out)
+            cv2.imshow("JellyFlow Engine", out)
             if cv2.waitKey(1) & 0xFF == 27: break
             
     finally:
