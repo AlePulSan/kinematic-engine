@@ -61,3 +61,12 @@ VIDEO_SOURCE = "path/to/video.mp4"
 ```
 
 The engine standardizes the input resolution to 720p and handles the playback loop automatically.
+
+
+## R&D Sandbox (Proof of Concepts)
+
+To keep the core engine stable and modular, individual subsystems are isolated, stress-tested, and validated in the `pocs/` directory. This acts as a testing and learning playground before integrating code into the main pipeline:
+
+* **`camera/` (I/O Isolation):** Multithreaded Producer-Consumer pattern to solve buffer bloat and prevent camera lag.
+* **`tracker/` (CPU Telemetry):** Pure spatial landmark extraction and convex hull calculations using MediaPipe.
+* **`gpu/` (VRAM Management):** Isolated PyTorch distortion engine directly manipulating tensor memory on the GPU.
