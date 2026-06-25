@@ -69,4 +69,4 @@ To keep the core engine stable and modular, individual subsystems are isolated, 
 
 * **`camera/` (I/O Isolation):** Multithreaded Producer-Consumer pattern to solve buffer bloat and prevent camera lag.
 * **`tracker/` (CPU Telemetry):** Pure spatial landmark extraction and convex hull calculations using MediaPipe.
-* **`gpu/` (VRAM Management):** Isolated PyTorch distortion engine directly manipulating tensor memory on the GPU.
+* **`gpu/` (Memory Management):** Isolated PyTorch distortion engine directly manipulating tensor memory on the GPU.
